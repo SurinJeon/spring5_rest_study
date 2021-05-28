@@ -3,14 +3,12 @@ package spring5_rest_study.service.impl;
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import spring5_rest_study.dto.Member;
 import spring5_rest_study.mappers.MemberMapper;
-import spring5_rest_study.service.GetMemberService;
+import spring5_rest_study.service.RegisterMemberService;
 
-@Service
-public class GetMemberServiceImpl implements GetMemberService {
+public class RegisterMemberServiceImpl implements RegisterMemberService {
 
 	static final Log log = LogFactory.getLog(GetMemberServiceImpl.class);
 
@@ -18,10 +16,9 @@ public class GetMemberServiceImpl implements GetMemberService {
 	private MemberMapper mapper;
 
 	@Override
-	public Member getMember(long id) {
-		Member member = mapper.selectById(id);
-		log.debug("service - getMember() > " + id);
-		return member;
+	public int registerMember(Member member) {
+		log.debug("service - registerMember() > " + member);
+		return mapper.insert(member);
 	}
 
 }

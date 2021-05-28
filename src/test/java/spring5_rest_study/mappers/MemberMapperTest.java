@@ -73,8 +73,7 @@ public class MemberMapperTest {
 	@Test
 	public void test05Delete() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		Member member = new Member(1L);
-		int res = mapper.delete(member);
+		int res = mapper.delete(2L);
 		Assert.assertEquals(1, res);
 	}
 
