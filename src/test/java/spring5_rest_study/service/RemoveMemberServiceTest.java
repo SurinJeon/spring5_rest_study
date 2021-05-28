@@ -11,25 +11,26 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import spring5_rest_study.config.ContextRoot;
-import spring5_rest_study.dto.Member;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ContextRoot.class)
 @WebAppConfiguration
-public class GetMemberServiceTest {
-
-	private static final Log log = LogFactory.getLog(GetMemberServiceTest.class);
+public class RemoveMemberServiceTest {
+	private static final Log log = LogFactory.getLog(RemoveMemberServiceTest.class);
 
 	@Autowired
-	private GetMemberService service;
-
+	private RemoveMemberService service;
+	
+	@Autowired
+	private MemberListService listService;
+	
 	@Test
-	public void testGetMember() {
+	public void testRemoveMember() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		Member member = service.getMember(5L);
-		Assert.assertNotNull(member);
-		
-		log.debug(member.toString());
+		int res = service.removeMember(6L);
+		Assert.assertEquals(1, res);
+	
+		listService.getLists().stream().forEach(m -> log.debug(m.toString()));
 	}
 
 }

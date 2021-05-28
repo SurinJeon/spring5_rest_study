@@ -1,5 +1,7 @@
 package spring5_rest_study.service;
 
+import java.time.LocalDateTime;
+
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 import org.junit.Assert;
@@ -16,20 +18,23 @@ import spring5_rest_study.dto.Member;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ContextRoot.class)
 @WebAppConfiguration
-public class GetMemberServiceTest {
+public class RegisterMemberServiceTest {
 
-	private static final Log log = LogFactory.getLog(GetMemberServiceTest.class);
+	private static final Log log = LogFactory.getLog(RegisterMemberServiceTest.class);
 
 	@Autowired
-	private GetMemberService service;
-
+	private RegisterMemberService service;
+	
 	@Test
-	public void testGetMember() {
+	public void testRegisterMember() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		Member member = service.getMember(5L);
-		Assert.assertNotNull(member);
+		Member member = new Member("testtest@test.com", "1111", "testtest", LocalDateTime.now());
+		int res = service.registerMember(member);
+		
+		Assert.assertEquals(1, res);
 		
 		log.debug(member.toString());
+		
 	}
 
 }
