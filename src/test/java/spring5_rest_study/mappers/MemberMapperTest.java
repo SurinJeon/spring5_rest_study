@@ -36,10 +36,10 @@ public class MemberMapperTest {
 	}
 
 	@Test
-	public void test03SelectByEmail() {
+	public void test03selectById() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 
-		Member searchMem = mapper.selectByEmail("test@test.co.kr");
+		Member searchMem = mapper.selectById(1L);
 		log.debug(searchMem.toString());
 		Assert.assertNotNull(searchMem);
 	}
