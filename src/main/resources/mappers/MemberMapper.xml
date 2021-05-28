@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="spring5_rest_study.mappers.MemberMapper">
 	<resultMap type="Member" id="resMember">
-		<id property="id" column="id"/>
+		<id property="id" column="id"/> <!-- 기본키 -->
 		<result property="email" column="email"/>
 		<result property="password" column="password"/>
 		<result property="name" column="name"/>
@@ -10,7 +10,7 @@
 	</resultMap>
 	
 	<sql id="selectSQL">
-		select email, password, name, regdate
+		select id, email, password, name, regdate
 		  from member
 	</sql>
 	
@@ -30,6 +30,9 @@
 	<insert id="insert" parameterType="Member">
 		insert into member(email, password, name, regdate)
 		values (#{email}, #{password}, #{name}, #{regdate})
+		<selectKey keyProperty="id" resultType="Long">
+			select last_insert_id()
+		</selectKey>
 	</insert>
 	
 	<delete id="delete">

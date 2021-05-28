@@ -25,15 +25,19 @@ public class RegisterMemberServiceTest {
 	@Autowired
 	private RegisterMemberService service;
 	
+	@Autowired
+	private RemoveMemberService remService;
+	
 	@Test
 	public void testRegisterMember() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		Member member = new Member("testtest@test.com", "1111", "testtest", LocalDateTime.now());
+		Member member = new Member("testtest1122@test.com", "1111", "testtest", LocalDateTime.now());
 		int res = service.registerMember(member);
-		
 		Assert.assertEquals(1, res);
 		
 		log.debug(member.toString());
+		
+		remService.removeMember(member.getId());
 		
 	}
 

@@ -9,8 +9,7 @@ import org.springframework.context.annotation.Import;
 @ComponentScan(basePackages = {
 		"spring5_rest_study.mappers",
 		"spring5_rest_study.controller",
-		"spring5_rest_study.service",
-		"spring5_rest_study.common"
+		"spring5_rest_study.service"
 		}) 
 public class ContextRoot {
 

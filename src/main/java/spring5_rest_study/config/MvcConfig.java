@@ -36,16 +36,4 @@ public class MvcConfig implements WebMvcConfigurer {
 		ms.setDefaultEncoding("utf-8");
 		return ms;
 	}
-	
-//	@Override
-//	public void addInterceptors(InterceptorRegistry registry) {
-//		registry.addInterceptor(authCheckInterceptor()).addPathPatterns("/edit/**")
-//		.excludePathPatterns("/edit/help/**");
-//	}
-//
-//	@Bean
-//	public AuthCheckIntercptor authCheckInterceptor() {
-//		return new AuthCheckIntercptor();
-//	}
-
 }

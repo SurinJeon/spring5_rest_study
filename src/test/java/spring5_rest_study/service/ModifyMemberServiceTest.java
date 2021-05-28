@@ -1,7 +1,5 @@
 package spring5_rest_study.service;
 
-import static org.junit.Assert.fail;
-
 import java.time.LocalDateTime;
 
 import org.apache.ibatis.logging.Log;
@@ -26,16 +24,29 @@ public class ModifyMemberServiceTest {
 
 	@Autowired
 	private ModifyMemberService service;
+	
+	@Autowired
+	private RegisterMemberService regService;
+	
+	@Autowired
+	private RemoveMemberService remService;
+
 
 	@Test
 	public void testModifyMember() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		Member member = new Member("testtest@test.com", "1111", "testtest11", LocalDateTime.now());
-		int res = service.modifyMember(member);
-
+		Member newMember = new Member("testtest1234@test.com", "1111", "testtest11", LocalDateTime.now());
+		
+		regService.registerMember(newMember);
+		
+		newMember.setPassword("2222");
+		
+		int res = service.modifyMember(newMember);
 		Assert.assertEquals(1, res);
 
-		log.debug(member.toString());
+		log.debug(newMember.toString());
+		
+		remService.removeMember(newMember.getId());
 	}
 
 }

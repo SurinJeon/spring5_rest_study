@@ -39,13 +39,13 @@ public class MemberMapperTest {
 	public void test03selectById() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 
-		Member searchMem = mapper.selectById(1L);
+		Member searchMem = mapper.selectById(5L);
 		log.debug(searchMem.toString());
 		Assert.assertNotNull(searchMem);
 	}
 
 	@Test
-	public void test04SelectAll() {
+	public void test01SelectAll() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		List<Member> list = mapper.selectAll();
 		Assert.assertNotNull(list);
@@ -54,26 +54,39 @@ public class MemberMapperTest {
 	}
 
 	@Test
-	public void test01Insert() {
+	public void test02Insert() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		Member member = new Member("test@test.co.kr", "1111", "test", LocalDateTime.now());
+		Member member = new Member("test545@test.co.kr", "1111", "test255", LocalDateTime.now());
 
 		int res = mapper.insert(member);
 		Assert.assertEquals(1, res);
+		
+		log.debug("res id >> " + member.getId());
+		mapper.delete(member.getId());
 	}
 
 	@Test
-	public void test02Update() {
+	public void test04Update() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		Member member = new Member("test@test.co.kr", "1111", "test2", LocalDateTime.now());
-		int res = mapper.update(member);
+		Member newMember = new Member("test300@test.co.kr", "1111", "test300", LocalDateTime.now());
+		mapper.insert(newMember);
+		
+		newMember.setPassword("2222");
+		int res = mapper.update(newMember); // 비번바꿈
+		
 		Assert.assertEquals(1, res);
+		
+		mapper.delete(newMember.getId());
 	}
 
 	@Test
 	public void test05Delete() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		int res = mapper.delete(2L);
+		
+		Member newMember = new Member("test500@test.co.kr", "1111", "test500", LocalDateTime.now());
+		mapper.insert(newMember);
+		
+		int res = mapper.delete(newMember.getId());
 		Assert.assertEquals(1, res);
 	}
 

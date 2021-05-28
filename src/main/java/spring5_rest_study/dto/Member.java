@@ -19,6 +19,13 @@ public class Member {
 		this.id = id;
 	}
 
+	public Member(String email, String password, String name) {
+		super();
+		this.email = email;
+		this.password = password;
+		this.name = name;
+	}
+
 	public Member(String email, String password, String name, LocalDateTime regdate) {
 		this.email = email;
 		this.password = password;
@@ -59,6 +66,10 @@ public class Member {
 
 	public LocalDateTime getRegdate() {
 		return regdate;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@Override
