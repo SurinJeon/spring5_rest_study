@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%5p [%t] - %m%n" />
+		</Console>
+
+	</Appenders>
+	<!-- FileName과 Logger name이 같은 패키지명이여야됨 -->
+	<Loggers>
+		<Logger name="spring5_rest_study" level="trace"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+	</Loggers>
+</Configuration>
