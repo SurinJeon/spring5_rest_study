@@ -29,7 +29,7 @@
 	
 	<insert id="insert" parameterType="Member">
 		insert into member(email, password, name, regdate)
-		values (#{email}, #{password}, #{name}, #{regdate})
+		values (#{email}, #{password}, #{name}, now())
 		<selectKey keyProperty="id" resultType="Long">
 			select last_insert_id()
 		</selectKey>
